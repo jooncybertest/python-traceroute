@@ -41,13 +41,16 @@ def find_and_plot_coordinates(hostname):
             colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'cyan', 'magenta', 'lime']
 
             # Find coordinates and plot them
+            sequence = 1
             for i, ip_address in enumerate(ips):
                 if i == 0:
                     latitude, longitude = public_ip_to_coordinates(public_ip)
                     plot_lat_long(gmap, latitude, longitude, "Public IP", colors[0])
                 else:
                     latitude, longitude = ip_to_coordinates(ip_address)
-                    plot_lat_long(gmap, latitude, longitude, str(i), colors[i % len(colors)])
+                    if latitude is not None and longitude is not None:
+                        plot_lat_long(gmap, latitude, longitude, str(sequence), colors[i % len(colors)])
+                        sequence += 1
 
                 # Pause to avoid getting banned by 'dazzlepod.com'
                 time.sleep(2)
