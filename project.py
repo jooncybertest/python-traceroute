@@ -51,10 +51,14 @@ def find_and_plot_coordinates(hostname):
                     plot_lat_long(gmap, latitude, longitude, "Public IP", route_color, labeled_coords)
                 else:
                     latitude, longitude = ip_to_coordinates(ip_address)
-                    if latitude is not None and longitude is not None:
-                        label_color = get_label_color(i)
+                    # Check if the coordinates are already labeled
+                    coord_str = f"{latitude},{longitude}"
+                    if latitude is not None and longitude is not None and coord_str not in labeled_coords:
+                        # If not labeled, plot them and add to the set
+                        label_color = get_label_color(sequence) if i != 0 else route_color
                         plot_lat_long(gmap, latitude, longitude, str(sequence), label_color, labeled_coords)
-                        sequence += 1
+                        labeled_coords.add(coord_str)  # Add the current coordinates to the set
+                        sequence += 1  # Increment sequence only if new coordinates are plotted
 
                 # Pause to avoid getting banned by 'dazzlepod.com'
                 time.sleep(2)
