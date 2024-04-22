@@ -104,10 +104,6 @@ def public_ip_to_coordinates(public_ip):
             latitude = data['latitude']
             longitude = data['longitude']
             return latitude, longitude
-        else:
-            print("Latitude or longitude not found in JSON response.")
-    else:
-        print("Error: Unable to retrieve JSON data from dazzlepod.com")
     return None, None
 
 # Convert IP address to coordinates
@@ -120,10 +116,6 @@ def ip_to_coordinates(ip_address):
             latitude = data['latitude']
             longitude = data['longitude']
             return latitude, longitude
-        else:
-            print("Latitude or longitude not found in JSON response.")
-    else:
-        print("Error: Unable to retrieve JSON data from dazzlepod.com")
     return None, None
 
 # Get label color based on index
