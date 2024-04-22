@@ -12,8 +12,13 @@ import sys
 def plot_lat_long(gmap, latitude, longitude, sequence, color):
     # Check if latitude and longitude are not None
     if latitude is not None and longitude is not None:
+        # Introduce a small offset to longitude and latitude to ensure uniqueness
+        offset = 0.0001 * sequence
+        latitude += offset
+        longitude += offset
+        
         # Plot the coordinates with labels indicating the sequence
-        gmap.marker(latitude, longitude, label=sequence, color=color)
+        gmap.marker(latitude, longitude, label=str(sequence), color=color)
 
 # Find and plot coordinates
 def find_and_plot_coordinates(hostname):
