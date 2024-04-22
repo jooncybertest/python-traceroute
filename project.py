@@ -54,9 +54,10 @@ def find_and_plot_coordinates(hostname):
 
             # Draw lines between consecutive locations to represent the route
             for i in range(1, len(ips)):
-                latitudes = [ip_to_coordinates(ips[i - 1])[0], ip_to_coordinates(ips[i])[0]]
-                longitudes = [ip_to_coordinates(ips[i - 1])[1], ip_to_coordinates(ips[i])[1]]
-                gmap.plot(latitudes, longitudes, color=colors[i % len(colors)], edge_width=2)
+                lat1, lng1 = ip_to_coordinates(ips[i - 1])
+                lat2, lng2 = ip_to_coordinates(ips[i])
+                if lat1 is not None and lng1 is not None and lat2 is not None and lng2 is not None:
+                    gmap.plot([lat1, lat2], [lng1, lng2], color=colors[i % len(colors)], edge_width=2)
 
             # Save the map as HTML
             cwd = os.getcwd()
