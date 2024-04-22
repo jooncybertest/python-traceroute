@@ -11,14 +11,11 @@ import sys
 # Plot coordinates onto Google Maps
 def plot_lat_long(gmap, latitude, longitude, sequence, color, labeled_coords):
     if latitude is not None and longitude is not None:
-        sequence = int(sequence)
-        offset = 0.0001 * sequence
-        latitude += offset
-        longitude += offset
         coord_str = f"{latitude},{longitude}"
         if coord_str not in labeled_coords:
             gmap.marker(latitude, longitude, label=str(sequence), color=color)
             labeled_coords.add(coord_str)
+
 
 # Find and plot coordinates
 def find_and_plot_coordinates(hostname):
