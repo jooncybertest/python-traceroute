@@ -9,37 +9,26 @@ from gmplot import gmplot
 import sys
 
 # Plot coordinates onto Google Maps
-def plot_lat_long(latitude, longitude, sequence):
-    # Initialize Google Maps plotter
-    gmap = gmplot.GoogleMapPlotter(latitude, longitude, 3)
-    
-    # Handle path issue for Windows
-    if ":\\" in gmap.coloricon:
-        gmap.coloricon = gmap.coloricon.replace('/', '\\')
-        gmap.coloricon = gmap.coloricon.replace('\\', '\\\\')
-    
-    # Plot the coordinates with labels indicating the sequence
-    gmap.marker(latitude, longitude, sequence, color='cornflowerblue')
-    
-    # Save the map as HTML
-    cwd = os.getcwd()
-    gmap.draw("traceroute.html")
-    
-    # Open the HTML in the default browser
-    webbrowser.open("file:///" + cwd + "/traceroute.html")
+def plot_lat_long(gmap, latitude, longitude, sequence, color):
+    # Check if latitude and longitude are not None
+    if latitude is not None and longitude is not None:
+        # Plot the coordinates with labels indicating the sequence
+        gmap.marker(latitude, longitude, label=sequence, color=color)
 
 # Find and plot coordinates
 def find_and_plot_coordinates(hostname):
     # Get public IP address
-    response = requests.get("https://dazzlepod.com/ip/me")
-    if response.status_code == 200:
+    public_ip = get_public_ip()
+    if public_ip:
         try:
-            public_ip = response.json()['ip']
             # Convert hostname to IP address
             ip = socket.gethostbyname(hostname)
 
             # Perform traceroute
             res, _ = traceroute(ip, maxttl=64, verbose=0)
+
+            # Initialize Google Maps plotter
+            gmap = gmplot.GoogleMapPlotter(0, 0, 3)
 
             # Store retrieved IPs
             ips = []
@@ -48,21 +37,49 @@ def find_and_plot_coordinates(hostname):
             for item in res.get_trace()[ip]:
                 ips.append(res.get_trace()[ip][item][0])
 
+            # Define colors for markers
+            colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'cyan', 'magenta', 'lime']
+
             # Find coordinates and plot them
             for i, ip_address in enumerate(ips):
                 if i == 0:
                     latitude, longitude = public_ip_to_coordinates(public_ip)
-                    plot_lat_long(latitude, longitude, "Public IP")
+                    plot_lat_long(gmap, latitude, longitude, "Public IP", colors[0])
                 else:
                     latitude, longitude = ip_to_coordinates(ip_address)
-                    plot_lat_long(latitude, longitude, f"Hop {i}")
+                    plot_lat_long(gmap, latitude, longitude, str(i), colors[i % len(colors)])
 
                 # Pause to avoid getting banned by 'dazzlepod.com'
                 time.sleep(2)
+
+            # Draw lines between consecutive locations to represent the route
+            for i in range(1, len(ips)):
+                latitudes = [ip_to_coordinates(ips[i - 1])[0], ip_to_coordinates(ips[i])[0]]
+                longitudes = [ip_to_coordinates(ips[i - 1])[1], ip_to_coordinates(ips[i])[1]]
+                gmap.plot(latitudes, longitudes, color=colors[i % len(colors)], edge_width=2)
+
+            # Save the map as HTML
+            cwd = os.getcwd()
+            gmap.draw("traceroute.html")
+
+            # Open the HTML in the default browser
+            webbrowser.open("file:///" + cwd + "/traceroute.html")
         except json.decoder.JSONDecodeError:
             print("Error: Unable to retrieve public IP address. JSON data not found.")
     else:
         print("Error: Unable to retrieve public IP address.")
+
+# Get public IP address
+def get_public_ip():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        public_ip = s.getsockname()[0]
+        s.close()
+        return public_ip
+    except Exception as e:
+        print(f"Error: Unable to retrieve public IP address. {e}")
+        return None
 
 # Convert public IP to coordinates
 def public_ip_to_coordinates(public_ip):
