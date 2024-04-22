@@ -37,19 +37,20 @@ def find_and_plot_coordinates(hostname):
             for item in res.get_trace()[ip]:
                 ips.append(res.get_trace()[ip][item][0])
 
-            # Define colors for markers
-            colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'cyan', 'magenta', 'lime']
+            # Define color for route line
+            route_color = 'blue'
 
             # Find coordinates and plot them
             sequence = 1
             for i, ip_address in enumerate(ips):
                 if i == 0:
                     latitude, longitude = public_ip_to_coordinates(public_ip)
-                    plot_lat_long(gmap, latitude, longitude, "Public IP", colors[0])
+                    plot_lat_long(gmap, latitude, longitude, "Public IP", route_color)
                 else:
                     latitude, longitude = ip_to_coordinates(ip_address)
                     if latitude is not None and longitude is not None:
-                        plot_lat_long(gmap, latitude, longitude, str(sequence), colors[i % len(colors)])
+                        label_color = get_label_color(i)
+                        plot_lat_long(gmap, latitude, longitude, str(sequence), label_color)
                         sequence += 1
 
                 # Pause to avoid getting banned by 'dazzlepod.com'
@@ -60,7 +61,7 @@ def find_and_plot_coordinates(hostname):
                 lat1, lng1 = ip_to_coordinates(ips[i - 1])
                 lat2, lng2 = ip_to_coordinates(ips[i])
                 if lat1 is not None and lng1 is not None and lat2 is not None and lng2 is not None:
-                    gmap.plot([lat1, lat2], [lng1, lng2], color=colors[i % len(colors)], edge_width=2)
+                    gmap.plot([lat1, lat2], [lng1, lng2], color=route_color, edge_width=2)
 
             # Save the map as HTML
             cwd = os.getcwd()
@@ -116,6 +117,11 @@ def ip_to_coordinates(ip_address):
     else:
         print("Error: Unable to retrieve JSON data from dazzlepod.com")
     return None, None
+
+# Get label color based on index
+def get_label_color(index):
+    colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'cyan', 'magenta', 'lime']
+    return colors[index % len(colors)]
 
 # Main code
 if __name__ == "__main__":
