@@ -14,7 +14,8 @@ This project visualizes the path of network packets across the internet by perfo
 -**Dazzlepod API:** Provides geolocation data for IP addresses. <br>
 -**Web Technologies:** Webbrowser module for rendering HTML maps. <br>
 
-## 📦 Installation### Prerequisites
+## 📦 Installation#
+## Prerequisites
 
 Ensure you have the following installed:
 
