@@ -7,8 +7,8 @@ This project visualizes the path of network packets across the internet by perfo
 -**Real-Time IP Geolocation:** Converts IP addresses to geographical coordinates using the Dazzlepod API, ensuring accurate and up-to-date location data for each hop. <br>
 -**Customizable and Extensible:** Includes customizable marker labels and route colors, with error handling and rate-limiting to ensure reliable operation. <br>
 
-## 🛠️ Tech Stack-
-**Python:** Core language used for network operations and data handling. <br>
+## 🛠️ Tech Stack
+-**Python:** Core language used for network operations and data handling. <br>
 -**Scapy:** Used for performing traceroute operations. <br>
 -**GMPlot:** Python library for plotting data on Google Maps. <br>
 -**Dazzlepod API:** Provides geolocation data for IP addresses. <br>
