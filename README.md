@@ -47,7 +47,7 @@ Steps <br>
 - The script will perform a traceroute, convert the resulting IPs to geographic coordinates, and plot them on a Google Map. <br>
 
 2.**View the results:** 
--** Once the traceroute is complete, an HTML file (`traceroute.html`) will be generated and automatically opened in your default web browser, showing the path of the packets.
+Once the traceroute is complete, an HTML file (`traceroute.html`) will be generated and automatically opened in your default web browser, showing the path of the packets.
 
 ## 📁 Project Structure
 ```bash
