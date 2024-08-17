@@ -22,26 +22,32 @@ Ensure you have the following installed:
 - pip (Python package manager)
 
 ### Installation 
-Steps1.**Clone the repository:**    
+Steps <br>
+1.**Clone the repository:**    
     ```bash
     git clone https://github.com/your-username/traceroute-visualization-tool.git
     cd traceroute-visualization-tool
     ```
+    <br>
 2.**Install the required Python packages:**    
     ```bash
     pip install -r requirements.txt
     ```
+    <br>
 3.**Run the script:**    
     ```bash
     python script.py [hostname]
     ```
+    <br>
     Replace `[hostname]` with the domain or IP address you want to trace.
     
-## 🎯 Usage1.**Perform a traceroute:**   
-  - Run the script with the desired hostname or IP address. <br>
-   - The script will perform a traceroute, convert the resulting IPs to geographic coordinates, and plot them on a Google Map. <br>
+## 🎯 Usage
+1.**Perform a traceroute:**   
+- Run the script with the desired hostname or IP address. <br>
+- The script will perform a traceroute, convert the resulting IPs to geographic coordinates, and plot them on a Google Map. <br>
 
-2.**View the results:**   - Once the traceroute is complete, an HTML file (`traceroute.html`) will be generated and automatically opened in your default web browser, showing the path of the packets.
+2.**View the results:** 
+-** Once the traceroute is complete, an HTML file (`traceroute.html`) will be generated and automatically opened in your default web browser, showing the path of the packets.
 
 ## 📁 Project Structure
 ```bash
