@@ -25,18 +25,18 @@ Ensure you have the following installed:
 ### Installation 
 Steps <br>
 1.**Clone the repository:**    
-    ```bash
+    ```
     git clone [https://github.com/your-username/traceroute-visualization-tool.git](https://github.com/jooncybertest/python-traceroute.git)
     cd traceroute-visualization-tool
     ```
     <br>
 2.**Install the required Python packages:**    
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
     <br>
 3.**Run the script:**    
-    ```bash
+    ```
     python project.py [hostname]
     ```
     <br>
