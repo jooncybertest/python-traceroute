@@ -26,7 +26,7 @@ Ensure you have the following installed:
 Steps <br>
 1.**Clone the repository:**    
     ```bash
-    git clone https://github.com/your-username/traceroute-visualization-tool.git
+    git clone [https://github.com/your-username/traceroute-visualization-tool.git](https://github.com/jooncybertest/python-traceroute.git)
     cd traceroute-visualization-tool
     ```
     <br>
@@ -37,7 +37,7 @@ Steps <br>
     <br>
 3.**Run the script:**    
     ```bash
-    python script.py [hostname]
+    python project.py [hostname]
     ```
     <br>
     Replace `[hostname]` with the domain or IP address you want to trace.
