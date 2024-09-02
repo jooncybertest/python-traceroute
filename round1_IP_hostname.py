@@ -1,7 +1,7 @@
 '''
 Created on Mar 1, 2020
 
-@author: techstaff
+@author: Junsoo Kim
 '''
 
 import sys
