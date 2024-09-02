@@ -53,6 +53,6 @@ Once the traceroute is complete, an HTML file (`traceroute.html`) will be genera
 ## 📁 Project Structure
 ```bash
 src/
-├── script.py                # Main script to run the traceroute and plot the map
+├── project.py                # Main script to run the traceroute and plot the map
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project documentation
