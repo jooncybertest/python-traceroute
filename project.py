@@ -19,7 +19,6 @@ def plot_lat_long(gmap, latitude, longitude, sequence, color, labeled_coords):
 
 # Find and plot coordinates
 def find_and_plot_coordinates(hostname):
-    # Get public IP address
     print("Getting public IP address...")
     public_ip = get_public_ip()
     if public_ip:
