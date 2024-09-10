@@ -139,7 +139,6 @@ def get_label_color(index):
     colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'brown', 'cyan', 'magenta', 'lime']
     return colors[index % len(colors)]
 
-# Main code
 if __name__ == "__main__":
     # Check if a hostname is provided as a command line argument
     if len(sys.argv) != 2:
