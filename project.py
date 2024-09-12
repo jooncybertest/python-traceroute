@@ -8,7 +8,6 @@ from scapy.layers.inet import traceroute
 from gmplot import gmplot
 import sys
 
-# Plot coordinates onto Google Maps
 def plot_lat_long(gmap, latitude, longitude, sequence, color, labeled_coords):
     if latitude is not None and longitude is not None:
         coord_str = f"{latitude},{longitude}"
