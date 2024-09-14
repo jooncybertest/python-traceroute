@@ -22,7 +22,6 @@ def find_and_plot_coordinates(hostname):
     if public_ip:
         print(f"Public IP address: {public_ip}")
         try:
-            # Convert hostname to IP address
             print(f"Resolving hostname {hostname} to IP address...")
             ip = socket.gethostbyname(hostname)
             print(f"Hostname {hostname} resolved to IP address {ip}")
