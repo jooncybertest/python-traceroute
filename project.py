@@ -34,7 +34,6 @@ def find_and_plot_coordinates(hostname):
             # Initialize Google Maps plotter
             gmap = gmplot.GoogleMapPlotter(0, 0, 3)
 
-            
             ips = []
 
             # Extract IP addresses from the traceroute results
