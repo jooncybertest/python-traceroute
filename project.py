@@ -26,7 +26,6 @@ def find_and_plot_coordinates(hostname):
             ip = socket.gethostbyname(hostname)
             print(f"Hostname {hostname} resolved to IP address {ip}")
 
-            # Perform traceroute
             print(f"Performing traceroute to {ip}...")
             res, _ = traceroute(ip, maxttl=64, verbose=0)
             print("Traceroute completed.")
